@@ -1,143 +1,46 @@
 <html lang="en">
-
-<head>
-    <link rel='stylesheet' type='text/css' href='style.css'>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>DPOrganizer Scoreboard</title>
-</head>
-<body onload="renderTable()">
+  </head>
+  <body onload="renderTable()">
     <h1>
-        <marquee BEHAVIOR=ALTERNATE SCROLLAMOUNT=25>DPOrganizer Pool High Score</marquee>
+      <marquee BEHAVIOR="ALTERNATE" SCROLLAMOUNT="25"
+        >DPOrganizer Pool High Score</marquee
+      >
     </h1>
     <p>
-        Indicate the players and the winner of the game:
+      Indicate the players and the winner of the game:
     </p>
 
     <div class="matrix-container">
-        <div class="container">
-            <input class="marginz" type="text" name="Player-1" placeholder="Enter player name" id='input1'>
-            <input type="radio" name="Winner" id='radio1'>
-        </div>
-
-        <div class="container">
-            <input class="marginz" type="text" name="Player-2" placeholder="Enter player name" id='input2'>
-            <input type="radio" name="Winner" id='radio2'>
-        </div>
+      <div class="container">
+        <label for="input1">Winner</label>
+        <input
+          class="marginz"
+          type="text"
+          name="Player-1"
+          placeholder="Enter team name"
+          id="input1"
+        />
+      </div>
+      <div class="container">
+        <label for="input2">Loser</label>
+        <input
+          class="marginz"
+          type="text"
+          name="Player-2"
+          placeholder="Enter team name"
+          id="input2"
+        />
+      </div>
     </div>
 
-    <button onclick='showScoreboard()'>Submit!</button>
+    <button onclick="addScore()">Submit!</button>
+    <div id="table"></div>
 
-    <div id="table">
+    <p><img src="trophy.jpg" alt="Winner winner chicken dinner" /></p>
+  </body>
 
-    </div>
-
-    <button onclick='reset()'> Reset!</button>
-
-
-    <p><img src="trophy.jpg" alt="Winner winner chicken dinner"></p>
-</body>
-
-<script>
-  function showScoreboard() {
-    const player1 = document.getElementById('input1').value.toUpperCase();
-    const player2 = document.getElementById('input2').value.toUpperCase();
-
-    const radio1 = document.getElementById('radio1').checked;
-    const radio2 = document.getElementById('radio2').checked;
-
-    let scoreboard = JSON.parse(localStorage.getItem('scoreboard'));
-    if (scoreboard == null) {
-      scoreboard = [];
-    }
-
-    let weHaveFoundPlayer1 = false;
-    let weHaveFoundPlayer2 = false;
-    let newPlayer;
-
-    for (const player in scoreboard) {
-      if (scoreboard[player].name === player1) {
-        weHaveFoundPlayer1 = true;
-        scoreboard[player].games = scoreboard[player].games + 1;
-
-        if (radio1 === true) {
-          scoreboard[player].score = scoreboard[player].score + 1;
-        }
-      } else if (scoreboard[player].name === player2) {
-        weHaveFoundPlayer2 = true;
-        scoreboard[player].games = scoreboard[player].games + 1;
-
-        if (radio2 === true) {
-          scoreboard[player].score = scoreboard[player].score + 1;
-        }
-      }
-    }
-
-    if (weHaveFoundPlayer1 === false) {
-      newPlayer = {
-        name: player1,
-        games: 1
-      };
-
-      if (radio1 === true) {
-        newPlayer.score = 1;
-      } else {
-        newPlayer.score = 0;
-      }
-
-      scoreboard.push(newPlayer);
-    }
-
-    if (weHaveFoundPlayer2 === false) {
-      newPlayer = {
-        name: player2,
-        games: 1
-      };
-
-      if (radio2 === true) {
-        newPlayer.score = 1;
-      } else {
-        newPlayer.score = 0;
-      }
-
-      scoreboard.push(newPlayer);
-    }
-
-    scoreboard = sortByKey(scoreboard, 'score');
-
-    localStorage.setItem('scoreboard', JSON.stringify(scoreboard));
-    renderTable();
-  }
-
-  function sortByKey(array, key) {
-    return array.sort(function (a, b) {
-      const x = a[key];
-      const y = b[key];
-      return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-    });
-  }
-
-  function renderTable() {
-    const scoreboard = JSON.parse(localStorage.getItem('scoreboard'));
-    const table = document.getElementById('table');
-
-    if (scoreboard !== null) {
-
-      const tableHeader = '<table><tr><th>Name</th><th>Score</th><th># of games</th></tr>';
-      let tableContent = '';
-
-      for (const player of scoreboard) {
-        tableContent = tableContent + '<tr><td>' + player.name + '</td><td>' + player.score + '</td><td>' + player.games + '</td></tr>';
-      }
-      const closingTable = '</table>';
-
-      table.innerHTML = tableHeader + tableContent + closingTable;
-    } else {
-      table.innerHTML = '';
-    }
-  }
-
-  function reset() {
-    localStorage.clear();
-    renderTable();
-  }
-</script>
+  <script type="text/javascript" src="/code.js"></script>
 </html>

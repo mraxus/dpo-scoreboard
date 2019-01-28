@@ -1,34 +1,60 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 25px;
 }
 
 .matrix-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 body {
-    background-color: green;
-    text-align: center;
-    font-family: fantasy;
+  background-color: green;
+  text-align: center;
+  font-family: fantasy;
 }
 
 .marginz {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
-table, th, td {
-    border: 1px solid black;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+table,
+th,
+td {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.black-cell {
+  background-color: black;
+  border: 1px solid black;
+}
+.t-border {
+  border: 1px solid black;
+}
+.hidden {
+  color: rgba(0, 0, 0, 0);
+  user-select: none;
+}
+th {
+  vertical-align: baseline;
+}
+th > span {
+  font-weight: normal;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 table {
-    margin:auto
+  margin: auto;
 }
 
-button{
-margin: 20px;
+button {
+  margin: 20px;
 }
