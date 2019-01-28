@@ -1,0 +1,17 @@
+{
+  "name": "dpo-scoreboard",
+  "version": "0.1.0",
+  "description": "DPOrganizer Scoreboard",
+  "main": "index.js",
+  "repository": "git@github.com:mraxus/dpo-scoreboard.git",
+  "author": "Marcus Bergman <marcus.bergman@dporganizer.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "prettier": "^1.16.1"
+  }
+}
